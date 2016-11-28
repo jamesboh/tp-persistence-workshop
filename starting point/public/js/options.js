@@ -23,6 +23,11 @@ $(function(){
 
   $.get('/api/hotels')
   .then(function (hotels) {
+    hotels.forEach( function(hotel) {
+      attractionsModule.addWhatever('hotels', hotel)
+    })
+  })
+  .then(function (hotels) {
     hotels.forEach(makeOption, $hotelSelect);
   })
   .catch( console.error.bind(console) );
@@ -41,8 +46,8 @@ $(function(){
 
   // make all the option tags (second arg of `forEach` is a `this` binding)
   // hotels.forEach(makeOption, $hotelSelect);
-  restaurants.forEach(makeOption, $restaurantSelect);
-  activities.forEach(makeOption, $activitySelect);
+  // restaurants.forEach(makeOption, $restaurantSelect);
+  // activities.forEach(makeOption, $activitySelect);
 
   function makeOption (databaseAttraction) {
     var $option = $('<option></option>') // makes a new option tag
